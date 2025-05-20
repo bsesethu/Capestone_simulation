@@ -20,14 +20,16 @@ df_condensed = df.loc[0:8] # It includes 11
 print('\n')
 print(df_condensed)
 
-
-# df_new = df_condensed.dropna() # Drop missing data. drops all rows
-# Remove other provinces, leave only KZN and North West
-
-
 df_condensed['Provincial percentages, North West'] = (df_condensed['North West'] / 10873.0) * 100 #NOTE Adding a new column and finding the provincial percentages
                                                                                                   # 10873.8 is the contact crime total for the North West
-print('\nContact crime by province, with an added column provincial percentages for the North West province')
+df_condensed['Provincial percentages, KZN'] = (df_condensed['KwaZulu-Natal'] / 28446.0) * 100 # 28446.0 contact crime total for KZN
+print('\nContact crime by province, with added columns for provincial percentages for the two provinces')
 print('\n')
 print(df_condensed)
 
+print('\nContact crime by province, with percentages of the provincial totals')
+df_clean = df_condensed[['CRIME CATEGORY', 'North West', 'Provincial percentages, North West', 'KwaZulu-Natal', 'Provincial percentages, KZN']] #NOTE This is how to print only the columns we want
+df_clean1 = df_clean.dropna() # Drop the missing data row
+print(df_clean1) 
+
+df_clean1.to_csv("clean_dataset/Provincial_KZN_NW_clean.csv", sep=",", index=False) # To save a csv of the dataframe to a certain folder
