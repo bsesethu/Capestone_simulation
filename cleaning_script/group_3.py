@@ -28,5 +28,6 @@ print(df_condensed)
 df_condensed['Provincial percentages, North West'] = (df_condensed['North West'] / 10873.0) * 100 #NOTE Adding a new column and finding the provincial percentages
                                                                                                   # 10873.8 is the contact crime total for the North West
 print('\nContact crime by province, with an added column provincial percentages for the North West province')
+print('\n')
 print(df_condensed)
 
