@@ -29,7 +29,25 @@ print(df_condensed)
 
 print('\nContact crime by province, with percentages of the provincial totals')
 df_clean = df_condensed[['CRIME CATEGORY', 'North West', 'Provincial percentages, North West', 'KwaZulu-Natal', 'Provincial percentages, KZN']] #NOTE This is how to print only the columns we want
-df_clean1 = df_clean.dropna() # Drop the missing data row
-print(df_clean1) 
+df_clean_clean = df_clean.dropna() # Drop the missing data row
+print(df_clean_clean) 
 
-df_clean1.to_csv("clean_dataset/Provincial_KZN_NW_clean.csv", sep=",", index=False) # To save a csv of the dataframe to a certain folder
+df_clean_clean.to_csv("clean_dataset/Provincial_KZN_NW_clean.csv", sep=",", index=False) # To save a csv of the dataframe to a certain folder
+
+# The national picture
+df_condensed_1 = df.loc[0:8]
+print('\n')
+print(df_condensed_1)
+
+df_condensed_1['National percentages, North West'] = (df_condensed_1['North West'] / df_condensed_1['July 2023 to \nSeptember 2023']) * 100 # New column, finding the national percentages
+df_condensed_1['National percentages, KZN'] = (df_condensed_1['KwaZulu-Natal'] / df_condensed_1['July 2023 to \nSeptember 2023']) * 100
+print('\nContact crime, province relative to national')
+print(df_condensed_1)
+
+# Cleaning
+df_clean_1 = df_condensed_1[['CRIME CATEGORY', 'July 2023 to \nSeptember 2023', 'North West', 'National percentages, North West', 'KwaZulu-Natal', 'National percentages, KZN']]
+df_clean_clean_1 = df_clean_1.dropna() # Drop missing
+print('\nContact crime, province relative to national')
+print(df_clean_clean_1)
+
+df_clean_clean_1.to_csv("clean_dataset/National_KZN_NW_clean.csv", sep=",", index=False) # Save csv
