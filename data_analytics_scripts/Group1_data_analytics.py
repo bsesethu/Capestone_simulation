@@ -18,7 +18,7 @@ plt.bar(x, df["Eastern Cape"], width=bar_width, label="Eastern Cape", color='bla
 plt.bar([i + bar_width for i in x], df["Gauteng"], width=bar_width, label="Gauteng", color='grey')
 
 # Add labels and title
-print("\nSeaborn Barplot")
+print("\nMatplotlib Barplot")
 plt.xlabel("Crime Category")
 plt.ylabel("Number of Cases")
 plt.title("Crime Statistics: Eastern Cape vs Gauteng")
